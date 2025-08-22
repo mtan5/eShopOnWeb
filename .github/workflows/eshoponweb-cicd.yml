@@ -76,14 +76,6 @@ jobs:
       uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    # Ensure CLI is pinned to a stable version (avoids "response already consumed" bug)
-    - name: Install Azure CLI 2.72.0
-      run: |
-        sudo apt-get update
-        sudo apt-get remove -y azure-cli
-        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-        sudo apt-get install -y azure-cli=2.72.0-1~$(lsb_release -cs)
         
     # Deploy Azure WebApp using Bicep file
     - name: deploy
